@@ -19,10 +19,8 @@ return $currencies;
 
 public function show($code){
   $model=Currency::Where('code',$code)->first();
-  #dd($model->code);
   if(is_null($model))return "No code";
 
-  print("</br>");
   $url =  "https://free.currencyconverterapi.com/api/v5/convert?q=USD_".$model->code."&compact=y";
   $json = json_decode(file_get_contents($url), true);
   $results=reset($json);
